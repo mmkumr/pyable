@@ -1,10 +1,13 @@
+// @dart=2.9
+import 'package:barcode_scan_fix/barcode_scan.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pyable/widget/bottomNavBar.dart';
 import 'package:pyable/widget/drawer.dart';
 
 class Home extends StatefulWidget {
-  Home({Key? key}) : super(key: key);
+  Home({Key key}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -12,6 +15,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+  String qrcode = "";
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
@@ -181,26 +185,47 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(3.0),
                             child: Column(
                               children: [
                                 IconButton(
                                   color: Color(0xff38AFF9),
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    try {
+                                      String barcode =
+                                          await BarcodeScanner.scan();
+                                      setState(() => qrcode = barcode);
+                                    } on PlatformException catch (e) {
+                                      if (e.code ==
+                                          BarcodeScanner.CameraAccessDenied) {
+                                        setState(() {
+                                          print(
+                                              'The user did not grant the camera permission!');
+                                        });
+                                      } else {
+                                        print('Unknown error: $e');
+                                      }
+                                    } on FormatException {
+                                      print(
+                                          'null (User returned using the "back"-button before scanning anything.');
+                                    } catch (e) {
+                                      print('Unknown error: $e');
+                                    }
+                                  },
                                   icon: Icon(
                                     Icons.qr_code,
                                     size: 40,
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.all(3.0),
                                   child: Text("Scan QR code"),
                                 ),
                               ],
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(3.0),
                             child: Column(
                               children: [
                                 IconButton(
@@ -212,8 +237,11 @@ class _HomeState extends State<Home> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text("Sent to contacts"),
+                                  padding: const EdgeInsets.all(3.0),
+                                  child: Text(
+                                    "Sent to contacts",
+                                    softWrap: true,
+                                  ),
                                 ),
                               ],
                             ),
@@ -231,9 +259,6 @@ class _HomeState extends State<Home> {
                     },
                     child: Text(
                       "Close",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
                     ),
                   )
                 ],

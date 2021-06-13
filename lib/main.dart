@@ -1,4 +1,6 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:pyable/home.dart';
 
 void main() {
@@ -6,7 +8,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
 }
 
 class Auth extends StatefulWidget {
-  Auth({Key? key, required this.title}) : super(key: key);
+  Auth({Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -41,6 +42,7 @@ class _AuthState extends State<Auth> {
   final _signupform = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    ask();
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return MaterialApp(
@@ -130,7 +132,7 @@ class _AuthState extends State<Auth> {
                                   ),
 
                                   validator: (value) {
-                                    if (value!.isEmpty) {
+                                    if (value.isEmpty) {
                                       return "The name field cannot be empty";
                                     }
                                     return null;
@@ -158,7 +160,7 @@ class _AuthState extends State<Auth> {
                                   ),
 
                                   validator: (value) {
-                                    if (value!.isEmpty) {
+                                    if (value.isEmpty) {
                                       return "The name field cannot be empty";
                                     }
                                     return null;
@@ -305,7 +307,7 @@ class _AuthState extends State<Auth> {
                                       ),
 
                                       validator: (value) {
-                                        if (value!.isEmpty) {
+                                        if (value.isEmpty) {
                                           return "The name field cannot be empty";
                                         }
                                         return null;
@@ -334,7 +336,7 @@ class _AuthState extends State<Auth> {
                                       ),
 
                                       validator: (value) {
-                                        if (value!.isEmpty) {
+                                        if (value.isEmpty) {
                                           return "The name field cannot be empty";
                                         }
                                         return null;
@@ -363,7 +365,7 @@ class _AuthState extends State<Auth> {
                                       ),
 
                                       validator: (value) {
-                                        if (value!.isEmpty) {
+                                        if (value.isEmpty) {
                                           return "The name field cannot be empty";
                                         }
                                         return null;
@@ -392,7 +394,7 @@ class _AuthState extends State<Auth> {
                                       ),
 
                                       validator: (value) {
-                                        if (value!.isEmpty) {
+                                        if (value.isEmpty) {
                                           return "The name field cannot be empty";
                                         }
                                         return null;
@@ -476,5 +478,14 @@ class _AuthState extends State<Auth> {
         ),
       ),
     );
+  }
+
+  void ask() async {
+    if (await Permission.camera.status.isDenied) {
+      Map<Permission, PermissionStatus> statuses = await [
+        Permission.camera,
+        Permission.storage,
+      ].request();
+    }
   }
 }
