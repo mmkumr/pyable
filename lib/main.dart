@@ -42,7 +42,6 @@ class _AuthState extends State<Auth> {
   final _signupform = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    ask();
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return MaterialApp(
@@ -480,12 +479,5 @@ class _AuthState extends State<Auth> {
     );
   }
 
-  void ask() async {
-    if (await Permission.camera.status.isDenied) {
-      Map<Permission, PermissionStatus> statuses = await [
-        Permission.camera,
-        Permission.storage,
-      ].request();
-    }
-  }
+  
 }

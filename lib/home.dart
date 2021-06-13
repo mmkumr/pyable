@@ -3,6 +3,7 @@ import 'package:barcode_scan_fix/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:pyable/widget/bottomNavBar.dart';
 import 'package:pyable/widget/drawer.dart';
 
@@ -191,6 +192,10 @@ class _HomeState extends State<Home> {
                                 IconButton(
                                   color: Color(0xff38AFF9),
                                   onPressed: () async {
+                                    if (await Permission
+                                        .camera.status.isDenied) {
+                                      Permission.camera.request();
+                                    }
                                     try {
                                       String barcode =
                                           await BarcodeScanner.scan();
