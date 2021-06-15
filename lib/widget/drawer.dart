@@ -53,7 +53,19 @@ class _SidePanelState extends State<SidePanel> {
             child: ListTile(
               leading: Icon(FontAwesomeIcons.fingerprint),
               title: Text(
-                "Update Biometrics",
+                "KYC",
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {},
+            child: ListTile(
+              leading: Image.asset(
+                "assets/img/shop.png",
+                height: 30,
+              ),
+              title: Text(
+                "Stores",
               ),
             ),
           ),

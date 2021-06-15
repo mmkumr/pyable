@@ -34,7 +34,8 @@ class _BNavState extends State<BNav> {
                   onPressed: () {},
                 ),
                 Text(
-                  "Check Balance",
+                  "Transfer money\nto wallet",
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
                   ),
@@ -42,32 +43,7 @@ class _BNavState extends State<BNav> {
               ],
             ),
           ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.menu,
-                    size: 40,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    widget.scaffoldKey.currentState!.openDrawer();
-                  },
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 5.0),
-                  child: Text(
-                    "More",
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
+          
           Expanded(
             child: Column(
               children: [
@@ -80,7 +56,7 @@ class _BNavState extends State<BNav> {
                   onPressed: () {},
                 ),
                 Text(
-                  "Transfer money to wallet",
+                  "Wallet",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,

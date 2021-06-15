@@ -1,4 +1,5 @@
 // @dart=2.9
+import 'dart:ui';
 import 'package:barcode_scan_fix/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,8 +31,23 @@ class _HomeState extends State<Home> {
           key: _scaffoldKey,
           backgroundColor: Color(0xff706CFC),
           appBar: AppBar(
-            automaticallyImplyLeading: false,
             backgroundColor: Color(0xff706CFC),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  "assets/img/loginlogo.png",
+                  height: 40,
+                ),
+                Text(
+                  "PYABLE",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                  ),
+                ),
+              ],
+            ),
             bottom: TabBar(
               indicatorColor: Colors.white,
               indicatorWeight: 4.0,
@@ -52,6 +68,91 @@ class _HomeState extends State<Home> {
             children: [
               ListView(
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 15,
+                    ),
+                    child: Divider(
+                      color: Colors.white,
+                      thickness: 5,
+                    ),
+                  ),
+                  Text(
+                    "Send Money",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: MaterialButton(
+                                height: 80,
+                                color: Colors.white,
+                                shape: CircleBorder(),
+                                onPressed: () {},
+                                child: Icon(
+                                  Icons.people,
+                                  size: 40,
+                                  color: Color(0xff38AFF9),
+                                ),
+                              ),
+                            ),
+                            Text(
+                              "Phone no.",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: MaterialButton(
+                                height: 80,
+                                color: Colors.white,
+                                shape: CircleBorder(),
+                                onPressed: () {},
+                                child: Icon(
+                                  FontAwesomeIcons.university,
+                                  size: 40,
+                                  color: Color(0xff38AFF9),
+                                ),
+                              ),
+                            ),
+                            Text(
+                              "Withdraw From Wallet",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 15,
+                    ),
+                    child: Divider(
+                      color: Colors.white,
+                      thickness: 5,
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
@@ -171,104 +272,44 @@ class _HomeState extends State<Home> {
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: FloatingActionButton(
             elevation: 10,
-            child: Icon(Icons.add),
-            backgroundColor: Color(0xff38AFF9),
-            onPressed: () {
-              var alert = AlertDialog(
-                title: Text("Send Money"),
-                content: Container(
-                  width: w,
-                  height: 190,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(3.0),
-                            child: Column(
-                              children: [
-                                IconButton(
-                                  color: Color(0xff38AFF9),
-                                  onPressed: () async {
-                                    if (await Permission
-                                        .camera.status.isDenied) {
-                                      Permission.camera.request();
-                                    }
-                                    try {
-                                      String barcode =
-                                          await BarcodeScanner.scan();
-                                      setState(() => qrcode = barcode);
-                                    } on PlatformException catch (e) {
-                                      if (e.code ==
-                                          BarcodeScanner.CameraAccessDenied) {
-                                        setState(() {
-                                          print(
-                                              'The user did not grant the camera permission!');
-                                        });
-                                      } else {
-                                        print('Unknown error: $e');
-                                      }
-                                    } on FormatException {
-                                      print(
-                                          'null (User returned using the "back"-button before scanning anything.');
-                                    } catch (e) {
-                                      print('Unknown error: $e');
-                                    }
-                                  },
-                                  icon: Icon(
-                                    Icons.qr_code,
-                                    size: 40,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(3.0),
-                                  child: Text("Scan QR code"),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(3.0),
-                            child: Column(
-                              children: [
-                                IconButton(
-                                  color: Color(0xff38AFF9),
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.contacts,
-                                    size: 40,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(3.0),
-                                  child: Text(
-                                    "Sent to contacts",
-                                    softWrap: true,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+            child: Icon(
+              Icons.qr_code,
+              size: 50,
+              color: Color(0xff38AFF9),
+            ),
+            backgroundColor: Colors.white,
+            onPressed: () async {
+              if (await Permission.camera.status.isDenied) {
+                Permission.camera.request();
+              }
+              try {
+                String barcode = await BarcodeScanner.scan();
+                setState(() => qrcode = barcode);
+              } on PlatformException catch (e) {
+                if (e.code == BarcodeScanner.CameraAccessDenied) {
+                  setState(() {
+                    print('The user did not grant the camera permission!');
+                  });
+                } else {
+                  print('Unknown error: $e');
+                }
+              } on FormatException {
+                print(
+                    'null (User returned using the "back"-button before scanning anything.');
+              } catch (e) {
+                print('Unknown error: $e');
+              }
+              if (qrcode != "") {
+                showDialog(
+                  context: context,
+                  builder: (_) => new AlertDialog(
+                    content: Text(qrcode),
                   ),
-                ),
-                actions: [
-                  FlatButton(
-                    color: Color(0xff38AFF9),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text(
-                      "Close",
-                    ),
-                  )
-                ],
-              );
-              showDialog(context: context, builder: (_) => alert);
+                );
+                setState(() {
+                  qrcode = "";
+                });
+              }
             },
           ),
           bottomNavigationBar: BNav(
