@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pyable/wallet.dart';
 
 class BNav extends StatefulWidget {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
@@ -43,7 +44,6 @@ class _BNavState extends State<BNav> {
               ],
             ),
           ),
-          
           Expanded(
             child: Column(
               children: [
@@ -53,7 +53,9 @@ class _BNavState extends State<BNav> {
                     size: 40,
                     color: Colors.white,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(Wallet.name);
+                  },
                 ),
                 Text(
                   "Wallet",

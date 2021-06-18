@@ -60,6 +60,15 @@ class _SidePanelState extends State<SidePanel> {
           InkWell(
             onTap: () {},
             child: ListTile(
+              leading: Icon(FontAwesomeIcons.moneyBillWave),
+              title: Text(
+                "Extra Credit (Mini loan)",
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {},
+            child: ListTile(
               leading: Image.asset(
                 "assets/img/shop.png",
                 height: 30,
