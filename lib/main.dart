@@ -178,7 +178,9 @@ class _AuthState extends State<Auth> {
                                 child: Text(
                                   "LOGIN",
                                   style: TextStyle(
-                                      fontSize: 29, color: Colors.white),
+                                    fontSize: 29,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ),

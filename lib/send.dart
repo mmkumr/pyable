@@ -1,8 +1,10 @@
 import 'dart:math';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:nearby_connections/nearby_connections.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:pyable/wallet.dart';
 import 'package:pyable/widget/titlebar.dart';
 
 class Send extends StatefulWidget {
@@ -21,16 +23,16 @@ class _SendState extends State<Send> {
   String? tempFileUri; //reference to the file currently being transferred
   Map<int, String> map = Map();
   TextEditingController _amount = TextEditingController();
-  bool start = false;
+  @override
+  initState() {
+    super.initState();
+    search();
+  }
 
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
-    if (start == false) {
-      search();
-      start = true;
-    }
     return WillPopScope(
       onWillPop: _onBack,
       child: Scaffold(
@@ -38,7 +40,7 @@ class _SendState extends State<Send> {
         appBar: AppBar(
           backgroundColor: Color(0xff706CFC),
           title: TitleBar(
-            title: "Wallet",
+            title: "Send",
             logo: false,
           ),
         ),
@@ -88,7 +90,16 @@ class _SendState extends State<Send> {
                       color: Color(0xff38AFF9),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
-                      onPressed: () {},
+                      onPressed: () {
+                        endpointMap.forEach((key, value) {
+                          String a = _amount.text;
+                          showSnackbar(
+                              "Sent $a to ${value.endpointName}, id: $key");
+                          Nearby().sendBytesPayload(
+                              key, Uint8List.fromList(a.codeUnits));
+                        });
+                        _amount.clear();
+                      },
                       child: Text(
                         "Send",
                         style: TextStyle(fontSize: 29, color: Colors.white),
@@ -102,9 +113,8 @@ class _SendState extends State<Send> {
   }
 
   Future<bool> _onBack() async {
-    Future.delayed(const Duration(seconds: 3), () async {
-      await Nearby().stopDiscovery();
-    });
+    Nearby().stopDiscovery();
+    Nearby().stopAllEndpoints();
     return true;
   }
 
@@ -238,8 +248,7 @@ class _SendState extends State<Send> {
                         showSnackbar(endid + ": FAILED to transfer file");
                       } else if (payloadTransferUpdate.status ==
                           PayloadStatus.SUCCESS) {
-                        showSnackbar(
-                            "$endid success, total bytes = ${payloadTransferUpdate.totalBytes}");
+                        showSnackbar("Payment Successful.:)");
 
                         if (map.containsKey(payloadTransferUpdate.id)) {
                           //rename the file now
