@@ -173,7 +173,7 @@ class _AuthState extends State<Auth> {
                                 onPressed: () {
                                   Navigator.pop(context);
                                   Navigator.of(context)
-                                      .pushReplacementNamed(Home.name);
+                                      .pushNamed(Home.name);
                                 },
                                 child: Text(
                                   "LOGIN",

@@ -63,7 +63,7 @@ class _SendState extends State<Send> {
                         filled: true,
                         fillColor: Colors.white,
                         icon: Icon(Icons.person),
-                        hintText: "Email-id",
+                        hintText: "Amount",
                         labelStyle: TextStyle(
                           color: Color(0xff6DFFF0),
                           fontWeight: FontWeight.bold,
