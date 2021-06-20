@@ -305,6 +305,20 @@ class _HomeState extends State<Home> {
         ),
         bottomNavigationBar: BNav(
           scaffoldKey: _scaffoldKey,
+          bnIcons: [
+            FontAwesomeIcons.rupeeSign,
+            FontAwesomeIcons.wallet,
+          ],
+          bnTitle: [
+            "Transfer money\nto wallet",
+            "Wallet",
+          ],
+          bnfunc: [
+            () {},
+            () {
+              Navigator.of(context).pushNamed(Wallet.name);
+            },
+          ],
         ),
       ),
     );

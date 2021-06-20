@@ -7,6 +7,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:pyable/receive.dart';
 import 'package:pyable/send.dart';
+import 'package:pyable/widget/bottomNavBar.dart';
 import 'package:pyable/widget/drawer.dart';
 import 'package:pyable/widget/titlebar.dart';
 
@@ -182,65 +183,30 @@ class _WalletState extends State<Wallet> {
           });
         },
       ),
-      bottomNavigationBar: Container(
-        height: h * 0.12,
-        color: Color(0xff38AFF9),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                children: [
-                  IconButton(
-                    icon: Icon(
-                      Icons.send,
-                      size: 40,
-                      color: Colors.white,
-                    ),
-                    onPressed: () async {
-                      if (await Permission.location.status.isDenied) {
-                        Permission.location.request();
-                      }
-                      Navigator.of(context).pushNamed(Send.name);
-                    },
-                  ),
-                  Text(
-                    "send",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Column(
-                children: [
-                  IconButton(
-                    icon: Icon(
-                      FontAwesomeIcons.reply,
-                      size: 40,
-                      color: Colors.white,
-                    ),
-                    onPressed: () async {
-                      if (await Permission.location.status.isDenied) {
-                        Permission.location.request();
-                      }
-                      Navigator.of(context).pushNamed(Receive.name);
-                    },
-                  ),
-                  Text(
-                    "Recieve",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+      bottomNavigationBar: BNav(
+        scaffoldKey: _scaffoldKey,
+        bnIcons: [
+          Icons.send,
+          Icons.reply,
+        ],
+        bnTitle: [
+          "Send",
+          "Receive",
+        ],
+        bnfunc: [
+          () async {
+            if (await Permission.location.status.isDenied) {
+              Permission.location.request();
+            }
+            Navigator.of(context).pushNamed(Send.name);
+          },
+          () async {
+            if (await Permission.location.status.isDenied) {
+              Permission.location.request();
+            }
+            Navigator.of(context).pushNamed(Receive.name);
+          },
+        ],
       ),
     );
   }

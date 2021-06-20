@@ -6,8 +6,15 @@ import 'package:pyable/wallet.dart';
 
 class BNav extends StatefulWidget {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
-
-  BNav({required this.scaffoldKey});
+  List<IconData?> bnIcons;
+  List<String> bnTitle;
+  List<VoidCallback> bnfunc;
+  BNav({
+    required this.scaffoldKey,
+    required this.bnIcons,
+    required this.bnTitle,
+    required this.bnfunc,
+  });
 
   @override
   _BNavState createState() => _BNavState();
@@ -28,14 +35,14 @@ class _BNavState extends State<BNav> {
               children: [
                 IconButton(
                   icon: Icon(
-                    FontAwesomeIcons.rupeeSign,
+                    widget.bnIcons[0],
                     size: 40,
                     color: Colors.white,
                   ),
-                  onPressed: () {},
+                  onPressed: widget.bnfunc[0],
                 ),
                 Text(
-                  "Transfer money\nto wallet",
+                  widget.bnTitle[0],
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
@@ -49,16 +56,14 @@ class _BNavState extends State<BNav> {
               children: [
                 IconButton(
                   icon: Icon(
-                    FontAwesomeIcons.wallet,
+                    widget.bnIcons[1],
                     size: 40,
                     color: Colors.white,
                   ),
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(Wallet.name);
-                  },
+                  onPressed: widget.bnfunc[1],
                 ),
                 Text(
-                  "Wallet",
+                  widget.bnTitle[1],
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
