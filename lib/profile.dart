@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pyable/update_profile.dart';
 import 'package:pyable/widget/sidepanel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pyable/widget/titlebar.dart';
@@ -224,7 +225,10 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
               MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context)
+                      .pushReplacementNamed(UpdateProfile.name);
+                },
                 color: Color(0xff6DFFF0),
                 height: 50,
                 minWidth: w * 0.5,

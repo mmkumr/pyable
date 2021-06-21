@@ -6,6 +6,7 @@ import 'package:pyable/money_withdraw.dart';
 import 'package:pyable/profile.dart';
 import 'package:pyable/receive.dart';
 import 'package:pyable/send.dart';
+import 'package:pyable/update_profile.dart';
 import 'package:pyable/wallet.dart';
 import '../home.dart';
 
@@ -20,5 +21,6 @@ class MyRoute {
     MoneyWithdraw.name: (context) => MoneyWithdraw(),
     Profile.name: (context) => Profile(),
     AddMoney.name: (context) => AddMoney(),
+    UpdateProfile.name: (context) => UpdateProfile(),
   };
 }

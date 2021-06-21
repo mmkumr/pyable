@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pyable/contact.dart';
 import 'package:pyable/home.dart';
 import 'package:pyable/profile.dart';
+import 'package:pyable/update_profile.dart';
 
 class SidePanel extends StatefulWidget {
   SidePanel({Key? key}) : super(key: key);
@@ -87,7 +88,9 @@ class _SidePanelState extends State<SidePanel> {
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushNamed(UpdateProfile.name);
+            },
             child: ListTile(
               leading: Icon(Icons.perm_identity),
               title: Text(
