@@ -172,8 +172,7 @@ class _AuthState extends State<Auth> {
                                     borderRadius: BorderRadius.circular(20)),
                                 onPressed: () {
                                   Navigator.pop(context);
-                                  Navigator.of(context)
-                                      .pushNamed(Home.name);
+                                  Navigator.of(context).pushNamed(Home.name);
                                 },
                                 child: Text(
                                   "LOGIN",

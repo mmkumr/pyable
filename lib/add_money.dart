@@ -61,7 +61,6 @@ class _AddMoneyState extends State<AddMoney> {
           Padding(
             padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
             child: TextFormField(
-              keyboardType: TextInputType.number,
               controller: _coupon,
               decoration: InputDecoration(
                 filled: true,

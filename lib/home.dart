@@ -219,8 +219,8 @@ class _HomeState extends State<Home> {
                           onPressed: () async {
                             await Clipboard.setData(
                                 new ClipboardData(text: "OFF20"));
-                            _scaffoldKey.currentState.showSnackBar(SnackBar(
-                              content: Text('Copied to clipboard'),
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text("OFF20"),
                             ));
                           },
                           icon: Icon(Icons.copy),
@@ -281,35 +281,14 @@ class _HomeState extends State<Home> {
             if (await Permission.camera.status.isDenied) {
               Permission.camera.request();
             }
-            try {
-              BarcodeScanner.scan().then(
-                (value) {
-                  setState(() => qrcode = value);
-                },
-              );
-            } on PlatformException catch (e) {
-              if (e.code == BarcodeScanner.CameraAccessDenied) {
-                setState(() {
-                  print('The user did not grant the camera permission!');
-                });
-              } else {
-                print('Unknown error: $e');
-              }
-            } on FormatException {
-              print(
-                  'null (User returned using the "back"-button before scanning anything.');
-            } catch (e) {
-              print('Unknown error: $e');
-            }
-            Future.delayed(const Duration(seconds: 3), () {
-              if (qrcode != "") {
+            scan().then((value) {
+              if (qrcode != "null") {
                 showDialog(
                   context: context,
-                  builder: (_) => new AlertDialog(
+                  builder: (context) => AlertDialog(
                     content: Text(qrcode),
                   ),
                 );
-                qrcode = "";
               }
             });
           },
@@ -334,5 +313,24 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
+  }
+
+  Future scan() async {
+    try {
+      String barcode = await BarcodeScanner.scan();
+      setState(() => this.qrcode = barcode);
+    } on PlatformException catch (e) {
+      if (e.code == BarcodeScanner.CameraAccessDenied) {
+        setState(() {
+          this.qrcode = 'null';
+        });
+      } else {
+        setState(() => this.qrcode = 'null');
+      }
+    } on FormatException {
+      setState(() => this.qrcode = 'null');
+    } catch (e) {
+      setState(() => this.qrcode = 'null');
+    }
   }
 }
