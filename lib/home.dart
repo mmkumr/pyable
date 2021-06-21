@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:pyable/add_money.dart';
+import 'package:pyable/money_withdraw.dart';
 import 'package:pyable/wallet.dart';
 import 'package:pyable/widget/bottomNavBar.dart';
-import 'package:pyable/widget/drawer.dart';
+import 'package:pyable/widget/sidepanel.dart';
 import 'package:pyable/widget/titlebar.dart';
 
 class Home extends StatefulWidget {
@@ -113,7 +115,10 @@ class _HomeState extends State<Home> {
                               height: 80,
                               color: Colors.white,
                               shape: CircleBorder(),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pushNamed(MoneyWithdraw.name);
+                              },
                               child: Icon(
                                 FontAwesomeIcons.university,
                                 size: 40,
@@ -211,7 +216,13 @@ class _HomeState extends State<Home> {
                         leading: Text("Coupon code\nOFF20"),
                         title: Text("20% off on adding money to wallet."),
                         trailing: IconButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            await Clipboard.setData(
+                                new ClipboardData(text: "OFF20"));
+                            _scaffoldKey.currentState.showSnackBar(SnackBar(
+                              content: Text('Copied to clipboard'),
+                            ));
+                          },
                           icon: Icon(Icons.copy),
                         ),
                       ),
@@ -304,7 +315,6 @@ class _HomeState extends State<Home> {
           },
         ),
         bottomNavigationBar: BNav(
-          scaffoldKey: _scaffoldKey,
           bnIcons: [
             FontAwesomeIcons.rupeeSign,
             FontAwesomeIcons.wallet,
@@ -314,7 +324,9 @@ class _HomeState extends State<Home> {
             "Wallet",
           ],
           bnfunc: [
-            () {},
+            () {
+              Navigator.of(context).pushNamed(AddMoney.name);
+            },
             () {
               Navigator.of(context).pushNamed(Wallet.name);
             },

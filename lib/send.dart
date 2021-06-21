@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nearby_connections/nearby_connections.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pyable/wallet.dart';
@@ -58,11 +59,12 @@ class _SendState extends State<Send> {
                     padding:
                         const EdgeInsets.only(top: 40, left: 20, right: 20),
                     child: TextFormField(
+                      keyboardType: TextInputType.number,
                       controller: _amount,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
-                        icon: Icon(Icons.person),
+                        icon: Icon(FontAwesomeIcons.moneyBillWave),
                         hintText: "Amount",
                         labelStyle: TextStyle(
                           color: Color(0xff6DFFF0),

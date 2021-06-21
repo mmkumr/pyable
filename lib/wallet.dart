@@ -8,7 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:pyable/receive.dart';
 import 'package:pyable/send.dart';
 import 'package:pyable/widget/bottomNavBar.dart';
-import 'package:pyable/widget/drawer.dart';
+import 'package:pyable/widget/sidepanel.dart';
 import 'package:pyable/widget/titlebar.dart';
 
 class Wallet extends StatefulWidget {
@@ -184,7 +184,6 @@ class _WalletState extends State<Wallet> {
         },
       ),
       bottomNavigationBar: BNav(
-        scaffoldKey: _scaffoldKey,
         bnIcons: [
           Icons.send,
           Icons.reply,

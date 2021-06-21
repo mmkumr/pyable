@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pyable/contact.dart';
+import 'package:pyable/home.dart';
+import 'package:pyable/profile.dart';
 
 class SidePanel extends StatefulWidget {
   SidePanel({Key? key}) : super(key: key);
@@ -15,27 +18,32 @@ class _SidePanelState extends State<SidePanel> {
     return Drawer(
       child: ListView(
         children: [
-          UserAccountsDrawerHeader(
-            decoration: BoxDecoration(
-              color: Color(0xff706CFC),
-            ),
-            accountName: Text(
-              "John Wick",
-              style: TextStyle(
-                color: Colors.white,
+          InkWell(
+            onTap: () {
+              Navigator.of(context).pushNamed(Profile.name);
+            },
+            child: UserAccountsDrawerHeader(
+              decoration: BoxDecoration(
+                color: Color(0xff706CFC),
               ),
-            ),
-            accountEmail: Text(
-              "doglover@gmail.com",
-              style: TextStyle(
-                color: Colors.white,
+              accountName: Text(
+                "John Wick",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
               ),
-            ),
-            currentAccountPicture: new CircleAvatar(
-              backgroundColor: Colors.grey,
-              child: Icon(
-                Icons.person,
-                color: Colors.white,
+              accountEmail: Text(
+                "doglover@gmail.com",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              currentAccountPicture: new CircleAvatar(
+                backgroundColor: Colors.grey,
+                child: Icon(
+                  Icons.person,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
@@ -97,7 +105,9 @@ class _SidePanelState extends State<SidePanel> {
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushNamed(Contact.name);
+            },
             child: ListTile(
               leading: Icon(Icons.call),
               title: Text(

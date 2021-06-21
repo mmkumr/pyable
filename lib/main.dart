@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:pyable/home.dart';
-import 'package:pyable/routes.dart';
+import 'package:pyable/widget/routes.dart';
 
 void main() {
   runApp(MyApp());

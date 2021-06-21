@@ -5,12 +5,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pyable/wallet.dart';
 
 class BNav extends StatefulWidget {
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   List<IconData?> bnIcons;
   List<String> bnTitle;
   List<VoidCallback> bnfunc;
   BNav({
-    required this.scaffoldKey,
     required this.bnIcons,
     required this.bnTitle,
     required this.bnfunc,
