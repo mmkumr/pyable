@@ -7,6 +7,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:pyable/add_money.dart';
 import 'package:pyable/money_withdraw.dart';
+import 'package:pyable/person_history.dart';
+import 'package:pyable/send_to_contact.dart';
 import 'package:pyable/wallet.dart';
 import 'package:pyable/widget/bottomNavBar.dart';
 import 'package:pyable/widget/sidepanel.dart';
@@ -88,7 +90,10 @@ class _HomeState extends State<Home> {
                               height: 80,
                               color: Colors.white,
                               shape: CircleBorder(),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pushNamed(SendToContact.name);
+                              },
                               child: Icon(
                                 Icons.people,
                                 size: 40,
@@ -167,25 +172,34 @@ class _HomeState extends State<Home> {
                   gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3),
                   itemBuilder: (BuildContext context, int index) {
-                    return GridTile(
-                      child: Container(
-                        child: FractionallySizedBox(
-                          heightFactor: 0.6,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white,
-                              image: DecorationImage(
-                                image: AssetImage("assets/img/photo.jpg"),
+                    return InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => PersonHistory(id: "93py3e"),
+                          ),
+                        );
+                      },
+                      child: GridTile(
+                        child: Container(
+                          child: FractionallySizedBox(
+                            heightFactor: 0.6,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.white,
+                                image: DecorationImage(
+                                  image: AssetImage("assets/img/photo.jpg"),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      footer: Text(
-                        "Mukesh",
-                        style: TextStyle(color: Colors.white),
-                        textAlign: TextAlign.center,
+                        footer: Text(
+                          "Mukesh",
+                          style: TextStyle(color: Colors.white),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     );
                   },

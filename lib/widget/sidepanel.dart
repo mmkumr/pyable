@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pyable/contact.dart';
 import 'package:pyable/home.dart';
+import 'package:pyable/kyc.dart';
 import 'package:pyable/profile.dart';
 import 'package:pyable/update_profile.dart';
 
@@ -49,7 +50,62 @@ class _SidePanelState extends State<SidePanel> {
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                        title: Text("Refer and get rewarded"),
+                        content: Container(
+                          height: MediaQuery.of(context).size.height * 0.5,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Refer this app to your friend and get reward of 50Rs. to your wallet."
+                                "\nPress the refer button and share your refferal code."
+                                "If he/she will uses the refferal code while transfering money for the first time. You will get rewarded.",
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 20),
+                                child: TextFormField(
+                                  //controller: _name,
+                                  initialValue: "PY1932",
+                                  readOnly: true,
+
+                                  decoration: InputDecoration(
+                                    fillColor: Color(0xff6DFFF0),
+                                    labelText: "Referral Code",
+                                    labelStyle: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "The name field cannot be empty";
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        actions: [
+                          MaterialButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            color: Color(0xff38AFF9),
+                            child: Text("Refer Someone"),
+                          ),
+                        ],
+                      ));
+            },
             child: ListTile(
               leading: Icon(FontAwesomeIcons.userFriends),
               title: Text(
@@ -58,7 +114,9 @@ class _SidePanelState extends State<SidePanel> {
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushNamed(Kyc.name);
+            },
             child: ListTile(
               leading: Icon(FontAwesomeIcons.fingerprint),
               title: Text(

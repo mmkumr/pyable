@@ -28,48 +28,28 @@ class _BNavState extends State<BNav> {
       color: Color(0xff38AFF9),
       child: Row(
         children: [
-          Expanded(
-            child: Column(
-              children: [
-                IconButton(
-                  icon: Icon(
-                    widget.bnIcons[0],
-                    size: 40,
-                    color: Colors.white,
+          for (int i = 0; i < widget.bnIcons.length; i++)
+            Expanded(
+              child: Column(
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      widget.bnIcons[i],
+                      size: 40,
+                      color: Colors.white,
+                    ),
+                    onPressed: widget.bnfunc[i],
                   ),
-                  onPressed: widget.bnfunc[0],
-                ),
-                Text(
-                  widget.bnTitle[0],
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
+                  Text(
+                    widget.bnTitle[i],
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: Column(
-              children: [
-                IconButton(
-                  icon: Icon(
-                    widget.bnIcons[1],
-                    size: 40,
-                    color: Colors.white,
-                  ),
-                  onPressed: widget.bnfunc[1],
-                ),
-                Text(
-                  widget.bnTitle[1],
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-          ),
         ],
       ),
     );

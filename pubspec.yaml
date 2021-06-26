@@ -34,6 +34,9 @@ dependencies:
   percent_indicator: ^3.0.1
   nearby_connections: ^3.1.0
   path_provider: ^2.0.2
+  connectivity: ^3.0.6
+  algolia: ^1.0.1
+  mobile_number: ^1.0.4
 
 
 dev_dependencies:

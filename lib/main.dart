@@ -1,5 +1,6 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
+import 'package:mobile_number/mobile_number.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:pyable/home.dart';
 import 'package:pyable/widget/routes.dart';
@@ -12,7 +13,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       initialRoute: Auth.name,
       routes: MyRoute.names,
       theme: ThemeData(
@@ -37,6 +37,14 @@ class Auth extends StatefulWidget {
 class _AuthState extends State<Auth> {
   final _loginform = GlobalKey<FormState>();
   final _signupform = GlobalKey<FormState>();
+  String dob = "Select Date of birth";
+  int _phone = 0;
+  @override
+  initState() {
+    super.initState();
+    phone();
+  }
+
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
@@ -369,29 +377,77 @@ class _AuthState extends State<Auth> {
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       top: 40, left: 20, right: 20),
-                                  child: TextFormField(
-                                    //controller: _name,
-                                    decoration: InputDecoration(
-                                      filled: true,
-                                      fillColor: Colors.white,
-                                      icon: Icon(Icons.phone),
-                                      hintText: "Phone no.",
-                                      labelStyle: TextStyle(
-                                        color: Color(0xff6DFFF0),
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20,
-                                      ),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                    ),
-
-                                    validator: (value) {
-                                      if (value.isEmpty) {
-                                        return "The name field cannot be empty";
-                                      }
-                                      return null;
+                                  child: ListTile(
+                                    onTap: () async {
+                                      await MobileNumber.getSimCards
+                                          .then((value) {
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) => AlertDialog(
+                                            title: Text("Select phone no."),
+                                            content: Container(
+                                              height: h * 0.3,
+                                              width: w * 0.3,
+                                              child: ListView.builder(
+                                                  shrinkWrap: true,
+                                                  itemCount: value.length,
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                          int index) {
+                                                    return Card(
+                                                      color: Colors.grey,
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20),
+                                                      ),
+                                                      child: ListTile(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                          setState(() {
+                                                            _phone = int.parse(
+                                                                value[index]
+                                                                    .number);
+                                                          });
+                                                        },
+                                                        title: Text(
+                                                          value[index].number,
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }),
+                                            ),
+                                          ),
+                                        );
+                                      });
                                     },
+                                    leading: Icon(Icons.phone),
+                                    title: Text(_phone == 0
+                                        ? "Select Phone no."
+                                        : _phone.toString()),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 40, left: 20, right: 20),
+                                  child: ListTile(
+                                    onTap: () async {
+                                      showDatePicker(
+                                        context: context,
+                                        initialDate: DateTime.now(),
+                                        firstDate: DateTime(1900),
+                                        lastDate: DateTime(2100),
+                                      ).then((value) {
+                                        setState(() {
+                                          dob =
+                                              value.toString().substring(0, 10);
+                                        });
+                                      });
+                                    },
+                                    leading: Icon(Icons.date_range),
+                                    title: Text(dob),
                                   ),
                                 ),
                                 Padding(
@@ -467,5 +523,11 @@ class _AuthState extends State<Auth> {
         ),
       ),
     );
+  }
+
+  phone() async {
+    if (await MobileNumber.hasPhonePermission == false) {
+      MobileNumber.requestPhonePermission;
+    }
   }
 }

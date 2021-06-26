@@ -60,6 +60,17 @@ class _ProfileState extends State<Profile> {
                   child: ListView(
                     children: [
                       Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CircleAvatar(
+                          radius: 60,
+                          backgroundColor: Colors.grey,
+                          child: Icon(
+                            Icons.person,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Card(
                           shadowColor: Colors.black,
