@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "/media/mmkumr/MyWorkspace/Code/GitHub/pyable/build/barcode_scan_fix/intermediates/res/merged/release/color-v23/abc_btn_colored_borderless_text_material.xml",
+        "source": "/home/mmkumr/.gradle/caches/transforms-2/files-2.1/12e127716e8127973d2a216cd14a6418/appcompat-1.0.2/res/color-v23/abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "/media/mmkumr/MyWorkspace/Code/GitHub/pyable/build/barcode_scan_fix/intermediates/res/merged/release/color-v23/abc_tint_edittext.xml",
+        "source": "/home/mmkumr/.gradle/caches/transforms-2/files-2.1/12e127716e8127973d2a216cd14a6418/appcompat-1.0.2/res/color-v23/abc_tint_edittext.xml"
+    },
+    {
+        "merged": "/media/mmkumr/MyWorkspace/Code/GitHub/pyable/build/barcode_scan_fix/intermediates/res/merged/release/color-v23/abc_tint_seek_thumb.xml",
+        "source": "/home/mmkumr/.gradle/caches/transforms-2/files-2.1/12e127716e8127973d2a216cd14a6418/appcompat-1.0.2/res/color-v23/abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "/media/mmkumr/MyWorkspace/Code/GitHub/pyable/build/barcode_scan_fix/intermediates/res/merged/release/color-v23/abc_tint_spinner.xml",
+        "source": "/home/mmkumr/.gradle/caches/transforms-2/files-2.1/12e127716e8127973d2a216cd14a6418/appcompat-1.0.2/res/color-v23/abc_tint_spinner.xml"
+    },
+    {
+        "merged": "/media/mmkumr/MyWorkspace/Code/GitHub/pyable/build/barcode_scan_fix/intermediates/res/merged/release/color-v23/abc_tint_btn_checkable.xml",
+        "source": "/home/mmkumr/.gradle/caches/transforms-2/files-2.1/12e127716e8127973d2a216cd14a6418/appcompat-1.0.2/res/color-v23/abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "/media/mmkumr/MyWorkspace/Code/GitHub/pyable/build/barcode_scan_fix/intermediates/res/merged/release/color-v23/abc_btn_colored_text_material.xml",
+        "source": "/home/mmkumr/.gradle/caches/transforms-2/files-2.1/12e127716e8127973d2a216cd14a6418/appcompat-1.0.2/res/color-v23/abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "/media/mmkumr/MyWorkspace/Code/GitHub/pyable/build/barcode_scan_fix/intermediates/res/merged/release/color-v23/design_tint_password_toggle.xml",
+        "source": "/home/mmkumr/.gradle/caches/transforms-2/files-2.1/50f23f4316049b4dbfe8a24fb2e3d1c5/material-1.0.0/res/color-v23/design_tint_password_toggle.xml"
+    },
+    {
+        "merged": "/media/mmkumr/MyWorkspace/Code/GitHub/pyable/build/barcode_scan_fix/intermediates/res/merged/release/color-v23/abc_tint_switch_track.xml",
+        "source": "/home/mmkumr/.gradle/caches/transforms-2/files-2.1/12e127716e8127973d2a216cd14a6418/appcompat-1.0.2/res/color-v23/abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "/media/mmkumr/MyWorkspace/Code/GitHub/pyable/build/barcode_scan_fix/intermediates/res/merged/release/color-v23/abc_tint_default.xml",
+        "source": "/home/mmkumr/.gradle/caches/transforms-2/files-2.1/12e127716e8127973d2a216cd14a6418/appcompat-1.0.2/res/color-v23/abc_tint_default.xml"
+    },
+    {
+        "merged": "/media/mmkumr/MyWorkspace/Code/GitHub/pyable/build/barcode_scan_fix/intermediates/res/merged/release/color-v23/abc_color_highlight_material.xml",
+        "source": "/home/mmkumr/.gradle/caches/transforms-2/files-2.1/12e127716e8127973d2a216cd14a6418/appcompat-1.0.2/res/color-v23/abc_color_highlight_material.xml"
+    }
+]
