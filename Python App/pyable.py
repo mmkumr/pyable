@@ -1,7 +1,7 @@
 """Pyable app"""
 import tkinter as tk
-import login
 from PIL import Image, ImageTk
+import login
 
 Root = tk.Tk()
 Root.attributes('-fullscreen', True)

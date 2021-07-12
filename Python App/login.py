@@ -2,11 +2,12 @@
 import tkinter as tk
 import tkinter.font as tkf
 import fontawesome as fa
-import signup
+import contact
 
 
 login_frame = 0
 groot = 0
+
 
 class Login():
     """Login class of the app"""
@@ -18,6 +19,7 @@ class Login():
         font = tkf.Font(family='Helvetica', size=20, weight="normal")
         title_font = tkf.Font(family='Helvetica', size=50, weight="bold",
                               underline=True)
+        tagline_font = tkf.Font(family='Helvetica', size=10, weight="normal")
         login_frame = tk.Frame(root)
         login_frame.pack()
         login_frame.place(in_=root, anchor="c", relx=.5, rely=.5)
@@ -55,14 +57,16 @@ class Login():
         submit_btn = tk.Button(login_left, text="Submit", bg="green",
                                fg="white", font=font)
         submit_btn.pack()
-        signup_btn = tk.Button(login_right, text="Signup", bg="#3B75BE",
-                               fg="white", font=font, command=signuppage)
-        signup_btn.pack()
-        signup_btn.place(in_=login_right, anchor="c", relx=.5, rely=.5)
+        login_left.pack(expand=True, fill='both', side=tk.LEFT)
+        login_left.pack_propagate(0)
+        tagline_label = tk.Label(login_right, bg="white", fg="#436980",
+                                 text="Spend money not time\nwith\nPyable",
+                                 font=tagline_font)
+        tagline_label.pack(padx=40, side=tk.BOTTOM)
         contactus_btn = tk.Button(login_right, text="Contact Us", bg="#F06927",
-                                  fg="white", font=font)
+                                  fg="white", font=font, command=contactpage)
         contactus_btn.pack()
-        contactus_btn.place(in_=login_right, anchor="c", relx=.5, rely=.6)
+        contactus_btn.place(in_=login_right, anchor="c", relx=.5, rely=.5)
         return login_frame
 
     def destroy(self):
@@ -71,10 +75,10 @@ class Login():
         login_frame.destroy()
 
 
-def signuppage():
+def contactpage():
     """Navigator function for signup page"""
     global groot
     temp = Login()
     temp.destroy()
-    temp = signup.Signup()
+    temp = contact.Contact()
     temp.create(groot).tkraise()
