@@ -3,7 +3,7 @@ import tkinter as tk
 import tkinter.font as tkf
 import fontawesome as fa
 import contact
-
+import dashboard
 
 login_frame = 0
 groot = 0
@@ -15,6 +15,7 @@ class Login():
         """Login page frame"""
         global login_frame
         global groot
+        global gimg
         groot = root
         font = tkf.Font(family='Helvetica', size=20, weight="normal")
         title_font = tkf.Font(family='Helvetica', size=50, weight="bold",
@@ -55,7 +56,8 @@ class Login():
         password__entry.config(show="*")
         password__entry.pack(side=tk.RIGHT)
         submit_btn = tk.Button(login_left, text="Submit", bg="green",
-                               fg="white", font=font)
+                               fg="white", font=font,
+                               command=Dashboardpage)
         submit_btn.pack()
         login_left.pack(expand=True, fill='both', side=tk.LEFT)
         login_left.pack_propagate(0)
@@ -81,4 +83,13 @@ def contactpage():
     temp = Login()
     temp.destroy()
     temp = contact.Contact()
+    temp.create(groot).tkraise()
+
+
+def Dashboardpage():
+    """Navigator function for dashboard page"""
+    global groot
+    temp = Login()
+    temp.destroy()
+    temp = dashboard.Dashboard()
     temp.create(groot).tkraise()
