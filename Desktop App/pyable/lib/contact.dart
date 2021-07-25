@@ -21,7 +21,13 @@ class _ContactState extends State<Contact> {
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          child: Text("Contact Us"),
+          child: Text(
+            "Contact Us",
+            style: TextStyle(
+              color: Colors.blue,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
         elevation: 0.0,
         backgroundColor: Colors.white,

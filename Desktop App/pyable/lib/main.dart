@@ -35,13 +35,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
   @override
   Widget build(BuildContext context) {
     var w = MediaQuery.of(context).size.width;
     var h = MediaQuery.of(context).size.height;
-    final _formKey = GlobalKey<FormState>();
-    TextEditingController _email = TextEditingController();
-    TextEditingController _password = TextEditingController();
     return Scaffold(
       body: Container(
         width: w,
