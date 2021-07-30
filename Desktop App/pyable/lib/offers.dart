@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pyable/widgets/pyable_body.dart';
-import 'package:pyable/widgets/sidepanel.dart';
 
 class Offers extends StatefulWidget {
   Offers({Key? key}) : super(key: key);
@@ -238,7 +237,7 @@ class _AddOffersState extends State<AddOffers> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController _name = TextEditingController();
   TextEditingController _value = TextEditingController();
-  String valid_date = "";
+  String validDate = "";
   String type = "Normal";
   @override
   Widget build(BuildContext context) {
@@ -334,13 +333,14 @@ class _AddOffersState extends State<AddOffers> {
                     lastDate: DateTime(2100),
                   ).then((value) {
                     setState(() {
-                      valid_date = value.toString().substring(0, 10);
+                      validDate = value.toString().substring(0, 10);
                     });
                   });
                 },
                 leading: Icon(Icons.date_range),
                 title: Text(
-                    valid_date == "" ? "Select valid till date" : valid_date),
+                  validDate == "" ? "Select valid till date" : validDate,
+                ),
               ),
             ),
           ],

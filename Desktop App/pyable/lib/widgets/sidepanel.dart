@@ -42,7 +42,7 @@ class _SidePanelState extends State<SidePanel> {
             child: InkWell(
               onTap: () {
                 if (widget.name != Dashbaord.name) {
-                  Navigator.pushNamed(context, Dashbaord.name);
+                  Navigator.pushReplacementNamed(context, Dashbaord.name);
                 }
               },
               child: Column(

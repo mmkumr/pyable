@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pyable/kyc.dart';
 import 'package:pyable/offers.dart';
 import 'package:pyable/widgets/pyable_body.dart';
 import 'package:pyable/widgets/sidepanel.dart';
@@ -20,21 +21,26 @@ class _DashbaordState extends State<Dashbaord> {
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                FontAwesomeIcons.paypal,
-                color: Colors.grey,
-              ),
-              Text(
-                "PYABLE",
-                style: TextStyle(
-                  color: Colors.blue,
-                  fontWeight: FontWeight.bold,
+          child: InkWell(
+            onTap: () {
+              Navigator.of(context).pushNamed(KYC.name);
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  FontAwesomeIcons.paypal,
+                  color: Colors.grey,
                 ),
-              ),
-            ],
+                Text(
+                  "PYABLE",
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         elevation: 0.0,
